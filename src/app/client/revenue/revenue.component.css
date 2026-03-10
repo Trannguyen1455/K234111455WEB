@@ -1,0 +1,38 @@
+.revenue-wrapper {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.table th {
+    font-size: 0.8rem;
+    color: #666;
+    border: none;
+}
+
+.table td {
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, #198754, #20c997) !important;
+}
+
+.btn-group .btn {
+    padding: 10px 25px;
+    font-weight: 600;
+}

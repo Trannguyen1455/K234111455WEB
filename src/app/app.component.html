@@ -1,0 +1,50 @@
+<!-- PART B: Header / Menu -->
+<header class="part-b bg-dark text-white">
+  <div class="container d-flex justify-content-between align-items-center py-2">
+    <div class="logo">PANDA STORE</div>
+    <nav>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/shopping">Shopping</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link text-white dropdown-toggle d-flex align-items-center gap-2" href="#" id="cartDropdown"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-cart2"></i> Cart
+            <span *ngIf="(cartService.cartItems$ | async)?.length" class="badge bg-danger rounded-pill"
+              style="font-size: 0.6rem;">
+              {{ (cartService.cartItems$ | async)?.length }}
+            </span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="cartDropdown">
+            <li><a class="dropdown-item" routerLink="/cart">Current Cart</a></li>
+            <li *ngIf="authService.isEmployee()"><a class="dropdown-item" routerLink="/revenue">Revenue statistics</a>
+            </li>
+            <li *ngIf="authService.isEmployee()"><a class="dropdown-item" routerLink="/vip">VIP Customers</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="javascript:void(0)" (click)="logout()"
+            *ngIf="authService.isLoggedIn()">
+            Welcome <span class="text-info">{{ userName }}</span> (Logout)
+          </a>
+          <a class="nav-link text-white" routerLink="/login" *ngIf="!authService.isLoggedIn()">Login</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="main-layout container-fluid">
+  <div class="row">
+    <!-- PART A: Left Sidebar -->
+    <aside class="part-a col-md-3 py-4">
+      <app-student-info></app-student-info>
+    </aside>
+
+    <!-- PART C: Main Content -->
+    <main class="part-c col-md-9 py-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

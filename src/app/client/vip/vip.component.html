@@ -1,0 +1,67 @@
+<div class="vip-wrapper container py-5">
+    <div class="header-section mb-5 text-center">
+        <h2 class="display-6 fw-bold mb-2">
+            <i class="bi bi-gem text-primary"></i> VIP Customers
+        </h2>
+        <p class="text-muted">Top {{ topN }} customers with the highest total purchase value</p>
+    </div>
+
+    <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+
+    <div *ngIf="!loading && vipCustomers.length > 0" class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th class="ps-4">Rank</th>
+                                <th>Customer Info</th>
+                                <th>Contact</th>
+                                <th class="text-end pe-4">Total Spending</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let customer of vipCustomers; let i = index"
+                                [ngClass]="{'bg-light-yellow': i === 0}">
+                                <td class="ps-4">
+                                    <span class="rank-badge" [ngClass]="'rank-' + (i+1)">
+                                        {{ i + 1 }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="avatar-circle">
+                                            {{ customer.customer_name?.charAt(0) || 'C' }}
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 fw-bold">{{ customer.customer_name }}</h6>
+                                            <small class="text-muted">ID: {{ customer.customer_id || customer._id
+                                                }}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="small">
+                                        <i class="bi bi-envelope text-muted"></i> {{ customer.email || 'N/A' }}<br>
+                                        <i class="bi bi-phone text-muted"></i> {{ customer.phone || 'N/A' }}
+                                    </div>
+                                </td>
+                                <td class="text-end pe-4">
+                                    <span class="fw-bold text-primary fs-5">{{ customer.totalSpent | number:'1.0-0' }}
+                                        VNĐ</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && vipCustomers.length === 0" class="alert alert-info text-center mt-5">
+        No customer data found in the database.
+    </div>
+</div>

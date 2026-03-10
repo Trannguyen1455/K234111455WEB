@@ -1,0 +1,26 @@
+<div class="container py-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0 rounded-4 p-4 text-center">
+                <i class="bi bi-person-circle display-1 text-primary mb-3"></i>
+                <h3 class="mb-4 fw-bold">Login to PandaStore</h3>
+
+                <div class="form-floating mb-4 text-start">
+                    <input type="text" class="form-control" id="usernameInput" placeholder="Your Name"
+                        [(ngModel)]="username" (keyup.enter)="onLogin()">
+                    <label for="usernameInput">Enter your name</label>
+                </div>
+
+                <button class="btn btn-primary w-100 py-2 fw-bold text-uppercase rounded-3" (click)="onLogin()">
+                    Login
+                </button>
+
+                <p class="mt-4 small text-muted">
+                    <i class="bi bi-info-circle"></i> Tip for Examiner: Login as <strong>"Nguyễn Thị Bảo Trân"</strong>
+                    to gain <em>Employee</em> access (for Revenue and VIP features). Any other name will log in as a
+                    regular <em>Customer</em>.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

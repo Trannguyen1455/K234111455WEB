@@ -1,0 +1,65 @@
+<div class="revenue-wrapper container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">
+            <i class="bi bi-graph-up-arrow text-success"></i> Revenue Statistics
+        </h2>
+        <div class="btn-group shadow-sm">
+            <button class="btn" [ngClass]="statisticsType === 'year' ? 'btn-success' : 'btn-outline-success'"
+                (click)="switchType('year')">By Year</button>
+            <button class="btn" [ngClass]="statisticsType === 'product' ? 'btn-success' : 'btn-outline-success'"
+                (click)="switchType('product')">By Product</button>
+        </div>
+    </div>
+
+    <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-grow text-success" role="status"></div>
+        <p class="mt-2 text-muted">Calculating revenue...</p>
+    </div>
+
+    <div *ngIf="!loading" class="row">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                <h5 class="mb-4">Revenue Breakdown ({{ statisticsType | titlecase }})</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>{{ statisticsType === 'year' ? 'Year' : 'Product Name' }}</th>
+                                <th class="text-end">Revenue</th>
+                                <th class="text-end">Contribution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of revenueData">
+                                <td class="fw-medium font-monospace">{{ item.label }}</td>
+                                <td class="text-end fw-bold text-success">{{ item.value | number:'1.0-0' }} VNĐ</td>
+                                <td class="text-end">
+                                    <span class="badge bg-light text-dark border">
+                                        {{ (item.value / totalRevenue * 100) | number:'1.1-1' }}%
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 bg-success text-white shadow rounded-4 p-4 text-center">
+                <i class="bi bi-cash-stack display-4 mb-3"></i>
+                <h6 class="text-uppercase small mb-2 opacity-75">Total Net Revenue</h6>
+                <h2 class="fw-bold mb-0">{{ totalRevenue | number:'1.0-0' }} VNĐ</h2>
+                <div class="mt-3 small">
+                    <span class="badge bg-white text-success">PAID ORDERS ONLY</span>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 mt-4">
+                <h6><i class="bi bi-info-circle"></i> Quick Insights</h6>
+                <p class="small text-muted mb-0">Statistics are based on all confirmed and paid transactions in the
+                    PandaStoreDB.</p>
+            </div>
+        </div>
+    </div>
+</div>

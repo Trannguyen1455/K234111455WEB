@@ -1,0 +1,28 @@
+/* Layout container */
+.main-layout {
+    min-height: calc(100vh - 60px);
+}
+
+/* Part A styling */
+.part-a {
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    min-height: calc(100vh - 60px);
+}
+
+/* Part B styling */
+.part-b {
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Part C styling */
+.part-c {
+    background-color: #ffffff;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}

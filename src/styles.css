@@ -1,0 +1,13 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* You can add global styles to this file, and also import other style files */
+/* Highlight style for selected items */
+.highlight-yellow {
+    background-color: #fff3cd !important;
+    border: 1px solid #ffeeba !important;
+    color: #856404 !important;
+}
+
+body {
+    padding-top: 20px;
+}
